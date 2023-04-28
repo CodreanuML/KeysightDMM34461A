@@ -93,6 +93,3 @@ def time_read_current(timesec):
 
 
 
-time_read_current(10)
-#time.sleep(2)
-#one_read_current()
