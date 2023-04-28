@@ -1,12 +1,15 @@
 import socket
 import time
+
+#CREATING TCP - IP COMMUNICATION USING SOCKET MODULE 
+
 s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect(('192.168.1.1', 5025))
 s.setsockopt(socket.IPPROTO_TCP, socket.TCP_NODELAY, 1)
 s.settimeout(2)
 
 
-
+# ONE VOLTAGE READS - SEE MANUAL FOR COMMANDS ON TCP 
 def one_read_voltage():
 	try:
 		s.send('Measure:VOLTage:DC?\n'.encode())
@@ -16,6 +19,8 @@ def one_read_voltage():
 
 	s.close()
 
+	
+# ONE CURRENT READS - SEE MANUAL FOR COMMANDS ON TCP 
 def one_read_current():
 	try:
 		s.send('Measure:CURRent:DC?\n'.encode())
@@ -24,7 +29,7 @@ def one_read_current():
 		print('Connection Failed')
 	s.close()
 
-
+# MULTIPLE VOLTAGES READS - SEE MANUAL FOR COMMANDS ON TCP 		
 def multiple_read_voltage(NrOfTries):
 	med=0
 	for i in range(0,NrOfTries):
@@ -38,7 +43,8 @@ def multiple_read_voltage(NrOfTries):
 	print ('VOLTAGE -MED VALUE : ' + str(med/NrOfTries) + ' Volts')	
 	
 	s.close()
-	
+
+# MULTIPLE CURRENTS READS - SEE MANUAL FOR COMMANDS ON TCP 	
 def multiple_read_current(NrOfTries):
 	med=0
 	for i in range(0,NrOfTries):
@@ -51,7 +57,10 @@ def multiple_read_current(NrOfTries):
 
 	print ('CURRent -MED VALUE : ' + str(med/NrOfTries) + ' Amps')	
 	s.close()
-
+	
+	
+#VOLTAGE READ (IN A SPECIFIED INTERVAL OF TIME - IN SECONDS)
+	
 def time_read_voltage(timesec):
 	date1=time.time()
 	date2=time.time()
@@ -71,6 +80,7 @@ def time_read_voltage(timesec):
 
 	s.close()
 
+#CURRENT READ (IN A SPECIFIED INTERVAL OF TIME - IN SECONDS)	
 def time_read_current(timesec):
 	date1=time.time()
 	date2=time.time()
