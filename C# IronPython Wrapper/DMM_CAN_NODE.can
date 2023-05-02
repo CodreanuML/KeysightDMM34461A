@@ -1,0 +1,51 @@
+includes{
+   #pragma netlibrary ("DMM_DLL.dll")
+}
+
+variables{
+
+}
+
+
+on sysvar DMM::Start_One_Read_V{
+
+@DMM::Result_One_Read_v=DMM_DLL::DMM::one_read_voltage();
+  
+}
+
+
+on sysvar DMM::Start_One_Read_C{
+
+@DMM::Result_One_Read_c=DMM_DLL::DMM::one_read_current();
+  
+}
+
+
+on sysvar DMM::Start_Multiple_Reads_V{
+@DMM::Result_Multiple_Reads_v=0;
+@DMM::Result_Multiple_Reads_v=DMM_DLL::DMM::multiple_read_voltage(@DMM::Start_Multiple_Reads_V_NrTries);
+  
+}
+
+
+on sysvar DMM::Start_Multiple_Reads_C{
+@DMM::Result_Multiple_Reads_c=0;
+@DMM::Result_Multiple_Reads_c=DMM_DLL::DMM::multiple_read_current(@DMM::Start_Multiple_Reads_C_NrTries);
+  
+}
+
+
+
+
+on sysvar DMM::Start_Time_Read_V{
+@DMM::Result_Time_V=0;
+@DMM::Result_Time_V=DMM_DLL::DMM::multiple_read_voltage(@DMM::Start_Time_Read_V_Time);
+  
+}
+
+
+on sysvar DMM::Start_Time_Read_C{
+@DMM::Result_Time_C=0;
+@DMM::Result_Time_C=DMM_DLL::DMM::multiple_read_current(@DMM::Start_Time_Read_C_Time);
+  
+}
